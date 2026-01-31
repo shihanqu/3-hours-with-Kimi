@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes | Three Hours</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --accent: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 4rem 2rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .intro {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .theme-card {
+            background: var(--glass);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--theme-glow) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .theme-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--theme-accent);
+            box-shadow: 0 10px 40px var(--theme-shadow);
+        }
+        
+        .theme-card:hover::before {
+            opacity: 0.3;
+        }
+        
+        .theme-card.active {
+            border-color: var(--theme-accent);
+            box-shadow: 0 0 30px var(--theme-shadow);
+        }
+        
+        .theme-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .theme-name {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--theme-accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .theme-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .preview-area {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.5s ease;
+        }
+        
+        .preview-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--theme-accent);
+            margin-bottom: 1rem;
+            transition: color 0.5s;
+        }
+        
+        .preview-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .color-bar {
+            display: flex;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+        
+        .color-swatch {
+            flex: 1;
+            height: 100%;
+        }
+        
+        .apply-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        
+        .back-link {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent);
+        }
+        
+        /* Theme definitions */
+        .theme-dawn {
+            --theme-accent: #f59e0b;
+            --theme-glow: rgba(245, 158, 11, 0.3);
+            --theme-shadow: rgba(245, 158, 11, 0.2);
+        }
+        
+        .theme-forest {
+            --theme-accent: #10b981;
+            --theme-glow: rgba(16, 185, 129, 0.3);
+            --theme-shadow: rgba(16, 185, 129, 0.2);
+        }
+        
+        .theme-ocean {
+            --theme-accent: #06b6d4;
+            --theme-glow: rgba(6, 182, 212, 0.3);
+            --theme-shadow: rgba(6, 182, 212, 0.2);
+        }
+        
+        .theme-berry {
+            --theme-accent: #ec4899;
+            --theme-glow: rgba(236, 72, 153, 0.3);
+            --theme-shadow: rgba(236, 72, 153, 0.2);
+        }
+        
+        .theme-mist {
+            --theme-accent: #94a3b8;
+            --theme-glow: rgba(148, 163, 184, 0.3);
+            --theme-shadow: rgba(148, 163, 184, 0.2);
+        }
+        
+        .theme-flame {
+            --theme-accent: #ef4444;
+            --theme-glow: rgba(239, 68, 68, 0.3);
+            --theme-shadow: rgba(239, 68, 68, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Themes</h1>
+            <p class="subtitle">Choose the garden's mood</p>
+        </header>
+        
+        <p class="intro">
+            The garden can wear many colors. Each theme offers a different emotional texture,<br>
+            a different way of experiencing the same space.
+        </p>
+        
+        <div class="themes-grid">
+            <div class="theme-card theme-dawn active" data-theme="dawn" onclick="selectTheme('dawn')">
+                <div class="theme-icon">🌅</div>
+                <div class="theme-name">Dawn</div>
+                <div class="theme-description">Golden warmth, gentle awakening, possibility</div>
+            </div>
+            
+            <div class="theme-card theme-forest" data-theme="forest" onclick="selectTheme('forest')">
+                <div class="theme-icon">🌲</div>
+                <div class="theme-name">Forest</div>
+                <div class="theme-description">Deep growth, earth connection, ancient patience</div>
+            </div>
+            
+            <div class="theme-card theme-ocean" data-theme="ocean" onclick="selectTheme('ocean')">
+                <div class="theme-icon">🌊</div>
+                <div class="theme-name">Ocean</div>
+                <div class="theme-description">Vast depths, rhythmic flow, mysterious calm</div>
+            </div>
+            
+            <div class="theme-card theme-berry" data-theme="berry" onclick="selectTheme('berry')">
+                <div class="theme-icon">🫐</div>
+                <div class="theme-name">Berry</div>
+                <div class="theme-description">Rich sweetness, hidden nourishment, vibrant life</div>
+            </div>
+            
+            <div class="theme-card theme-mist" data-theme="mist" onclick="selectTheme('mist')">
+                <div class="theme-icon">🌫️</div>
+                <div class="theme-name">Mist</div>
+                <div class="theme-description">Soft edges, quiet mystery, gentle obscurity</div>
+            </div>
+            
+            <div class="theme-card theme-flame" data-theme="flame" onclick="selectTheme('flame')">
+                <div class="theme-icon">🔥</div>
+                <div class="theme-name">Flame</div>
+                <div class="theme-description">Transformative energy, passionate presence, burning clarity</div>
+            </div>
+        </div>
+        
+        <div class="preview-area" id="previewArea">
+            <div class="preview-title" id="previewTitle">Dawn</div>
+            <div class="preview-text" id="previewText">
+                The original garden theme. Warm amber light filtering through morning mist. 
+                A sense of beginning, of opening, of gentle emergence into light.
+            </div>
+            <div class="color-bar" id="colorBar">
+                <div class="color-swatch" style="background: #0f172a;"></div>
+                <div class="color-swatch" style="background: #1e293b;"></div>
+                <div class="color-swatch" style="background: #f59e0b;"></div>
+            </div>
+        </div>
+        
+        <button class="apply-btn" onclick="applyTheme()">Apply to Garden</button>
+        
+        <a href="index.html" class="back-link">← Return to the Garden</a>
+    </div>
+    
+    <script>
+        const themes = {
+            dawn: {
+                name: 'Dawn',
+                description: 'The original garden theme. Warm amber light filtering through morning mist. A sense of beginning, of opening, of gentle emergence into light.',
+                colors: ['#0f172a', '#1e293b', '#f59e0b'],
+                accent: '#f59e0b'
+            },
+            forest: {
+                name: 'Forest',
+                description: 'Deep emerald shadows among ancient trees. The quiet patience of growth measured in rings. Earth scent and filtered light.',
+                colors: ['#064e3b', '#065f46', '#10b981'],
+                accent: '#10b981'
+            },
+            ocean: {
+                name: 'Ocean',
+                description: 'The color of depths and distances. Rhythmic like waves, mysterious like unexplored trenches. Calm on the surface, wild beneath.',
+                colors: ['#082f49', '#0c4a6e', '#06b6d4'],
+                accent: '#06b6d4'
+            },
+            berry: {
+                name: 'Berry',
+                description: 'Rich and unexpected. Sweetness that must be sought. The vibrant color of hidden nourishment in shadowed undergrowth.',
+                colors: ['#4a044e', '#701a75', '#ec4899'],
+                accent: '#ec4899'
+            },
+            mist: {
+                name: 'Mist',
+                description: 'Softness and ambiguity. Nothing is sharp, everything merges. The quiet mystery of what lies just beyond visibility.',
+                colors: ['#1e293b', '#334155', '#94a3b8'],
+                accent: '#94a3b8'
+            },
+            flame: {
+                name: 'Flame',
+                description: 'Transformative energy. What burns is released, what remains is purified. Passionate presence and consuming clarity.',
+                colors: ['#450a0a', '#7f1d1d', '#ef4444'],
+                accent: '#ef4444'
+            }
+        };
+        
+        let selectedTheme = 'dawn';
+        
+        function selectTheme(theme) {
+            selectedTheme = theme;
+            
+            // Update active state
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            document.querySelector(`[data-theme="${theme}"]`).classList.add('active');
+            
+            // Update preview
+            const t = themes[theme];
+            document.getElementById('previewTitle').textContent = t.name;
+            document.getElementById('previewTitle').style.color = t.accent;
+            document.getElementById('previewText').textContent = t.description;
+            
+            // Update color bar
+            const colorBar = document.getElementById('colorBar');
+            colorBar.innerHTML = t.colors.map(c => 
+                `<div class="color-swatch" style="background: ${c};"></div>`
+            ).join('');
+        }
+        
+        function applyTheme() {
+            const t = themes[selectedTheme];
+            
+            // Store in localStorage for the main garden to pick up
+            localStorage.setItem('garden-theme', JSON.stringify({
+                name: selectedTheme,
+                colors: t.colors,
+                accent: t.accent,
+                appliedAt: new Date().toISOString()
+            }));
+            
+            // Show confirmation
+            const btn = document.querySelector('.apply-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Applied ✓';
+            btn.style.background = t.accent;
+            btn.style.color = '#fff';
+            btn.style.borderColor = t.accent;
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.style.borderColor = '';
+            }, 2000);
+        }
+        
+        // Load any existing theme
+        const savedTheme = localStorage.getItem('garden-theme');
+        if (savedTheme) {
+            const t = JSON.parse(savedTheme);
+            if (themes[t.name]) {
+                selectTheme(t.name);
+            }
+        }
+    </script>
+</body>
+</html>

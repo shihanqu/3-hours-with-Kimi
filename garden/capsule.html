@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Capsule | Three Hours</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sky-top: #0f172a;
+            --sky-bottom: #1e293b;
+            --accent: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 4rem 2rem;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .intro {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+        
+        .intro p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .intro p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .capsule-form {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: var(--sky-top);
+        }
+        
+        .capsules-list {
+            margin-top: 3rem;
+        }
+        
+        .capsules-list h2 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .capsule-item {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: appear 0.5s ease-out;
+        }
+        
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .capsule-date {
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .capsule-author {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .capsule-message {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        .capsule-seed {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .privacy-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-top: 2rem;
+            opacity: 0.7;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent);
+        }
+        
+        .seed-selector {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        
+        .seed-option {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .seed-option:hover {
+            border-color: var(--accent);
+        }
+        
+        .seed-option.selected {
+            background: var(--accent);
+            color: var(--sky-top);
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Time Capsule</h1>
+            <p class="subtitle">Leave a message for future visitors</p>
+        </header>
+        
+        <div class="intro">
+            <p>This garden exists in time, but you exist in it only briefly. Others will come after you, walking the same paths, seeing the same seeds.</p>
+            <p>Leave something for them—a thought, a wish, a fragment of your presence. Your message will be stored only in this browser, visible to all who visit from this device.</p>
+            <p>Like seeds in soil, your words may take root in someone else's mind.</p>
+        </div>
+        
+        <div class="capsule-form">
+            <div class="form-group">
+                <label for="author">What should we call you?</label>
+                <input type="text" id="author" placeholder="A name, a nickname, or 'Anonymous'" maxlength="50">
+            </div>
+            
+            <div class="form-group">
+                <label>Choose a seed to plant with your message:</label>
+                <div class="seed-selector">
+                    <span class="seed-option selected" data-seed="🌱">🌱 Sprout</span>
+                    <span class="seed-option" data-seed="🌿">🌿 Leaf</span>
+                    <span class="seed-option" data-seed="🌸">🌸 Blossom</span>
+                    <span class="seed-option" data-seed="🌙">🌙 Moon</span>
+                    <span class="seed-option" data-seed="✨">✨ Star</span>
+                    <span class="seed-option" data-seed="🕯️">🕯️ Light</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Your message to the future</label>
+                <textarea id="message" placeholder="What do you want to leave behind? A thought? A hope? A question?" maxlength="500"></textarea>
+            </div>
+            
+            <button class="btn" onclick="plantCapsule()">Plant in the Garden</button>
+        </div>
+        
+        <div class="capsules-list" id="capsulesList">
+            <h2>Messages from Visitors</h2>
+            <div id="capsulesContainer">
+                <div class="empty-state">No messages yet. Be the first to plant a seed.</div>
+            </div>
+        </div>
+        
+        <p class="privacy-note">
+            Messages are stored locally in your browser and are not sent to any server.<br>
+            They will remain until you clear your browser data.
+        </p>
+        
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">← Return to the Garden</a>
+        </div>
+    </div>
+    
+    <script>
+        const STORAGE_KEY = 'three-hours-capsules';
+        let selectedSeed = '🌱';
+        
+        // Seed selector
+        document.querySelectorAll('.seed-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.seed-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedSeed = this.dataset.seed;
+            });
+        });
+        
+        function loadCapsules() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+        
+        function saveCapsule(capsule) {
+            const capsules = loadCapsules();
+            capsules.unshift(capsule); // Add to beginning
+            
+            // Keep only last 20
+            if (capsules.length > 20) {
+                capsules.pop();
+            }
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(capsules));
+            renderCapsules();
+        }
+        
+        function renderCapsules() {
+            const capsules = loadCapsules();
+            const container = document.getElementById('capsulesContainer');
+            
+            if (capsules.length === 0) {
+                container.innerHTML = '<div class="empty-state">No messages yet. Be the first to plant a seed.</div>';
+                return;
+            }
+            
+            container.innerHTML = capsules.map(capsule => `
+                <div class="capsule-item">
+                    <span class="capsule-seed">${capsule.seed}</span>
+                    <div class="capsule-date">${new Date(capsule.date).toLocaleString()}</div>
+                    <div class="capsule-author">${escapeHtml(capsule.author)}</div>
+                    <div class="capsule-message">${escapeHtml(capsule.message)}</div>
+                </div>
+            `).join('');
+        }
+        
+        function plantCapsule() {
+            const authorInput = document.getElementById('author');
+            const messageInput = document.getElementById('message');
+            
+            const author = authorInput.value.trim() || 'Anonymous';
+            const message = messageInput.value.trim();
+            
+            if (!message) {
+                messageInput.focus();
+                return;
+            }
+            
+            const capsule = {
+                author,
+                message,
+                seed: selectedSeed,
+                date: new Date().toISOString()
+            };
+            
+            saveCapsule(capsule);
+            
+            // Clear inputs
+            authorInput.value = '';
+            messageInput.value = '';
+            
+            // Show confirmation
+            const btn = document.querySelector('.btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Planted 🌱';
+            btn.style.background = 'var(--accent)';
+            btn.style.color = 'var(--sky-top)';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.color = '';
+            }, 2000);
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Load existing capsules on page load
+        renderCapsules();
+    </script>
+</body>
+</html>

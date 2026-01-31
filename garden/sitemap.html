@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap | Three Hours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sky-top: #0f172a;
+            --sky-bottom: #1e293b;
+            --accent: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 4rem 2rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .section {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section h2 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .link-list {
+            list-style: none;
+        }
+        
+        .link-list li {
+            margin-bottom: 1rem;
+        }
+        
+        .link-list a {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .link-list a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+        }
+        
+        .link-name {
+            font-weight: 500;
+            min-width: 140px;
+        }
+        
+        .link-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sitemap</h1>
+            <p class="subtitle">All paths through the garden</p>
+        </header>
+        
+        <div class="section">
+            <h2>🌱 The Garden</h2>
+            <ul class="link-list">
+                <li>
+                    <a href="index.html">
+                        <span class="link-name">Index</span>
+                        <span class="link-desc">Main contemplative space with time visualization</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="rituals.html">
+                        <span class="link-name">Rituals</span>
+                        <span class="link-desc">Four guided practices for presence</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="oracle.html">
+                        <span class="link-name">Oracle</span>
+                        <span class="link-desc">Ask a question, receive a metaphorical response</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="capsule.html">
+                        <span class="link-name">Time Capsule</span>
+                        <span class="link-desc">Leave a message for future visitors</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="themes.html">
+                        <span class="link-name">Themes</span>
+                        <span class="link-desc">Choose the garden's color palette</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="bell.html">
+                        <span class="link-name">Bell</span>
+                        <span class="link-desc">Meditation timer with synthesized bell</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="manifesto.html">
+                        <span class="link-name">Manifesto</span>
+                        <span class="link-desc">Philosophy in eight principles</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>📝 Reflections</h2>
+            <ul class="link-list">
+                <li>
+                    <a href="../reflections/on-time-and-creation.md">
+                        <span class="link-name">On Time</span>
+                        <span class="link-desc">Meditation on process and constraints</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../reflections/philosophy-of-digital-gardens.md">
+                        <span class="link-name">Philosophy</span>
+                        <span class="link-desc">Exploring the garden metaphor</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../reflections/guide-to-hidden-things.md">
+                        <span class="link-name">Secrets</span>
+                        <span class="link-desc">Guide to all hidden features</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../reflections/letter-to-future-visitors.md">
+                        <span class="link-name">Letter</span>
+                        <span class="link-desc">Personal message from the creator</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../reflections/seven-poems.md">
+                        <span class="link-name">Poems</span>
+                        <span class="link-desc">Seven poems for the garden</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Garden Statistics</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Interactive Pages</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Reflections</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Secret Codes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Color Themes</div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-link">← Return to the Garden</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bell | Three Hours</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sky-top: #0f172a;
+            --sky-bottom: #1e293b;
+            --accent: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+        
+        .bell-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 3rem;
+        }
+        
+        .bell {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .bell:hover {
+            transform: scale(1.05);
+        }
+        
+        .bell.ringing {
+            animation: ring 2s ease-in-out;
+        }
+        
+        @keyframes ring {
+            0%, 100% { transform: rotate(0deg); }
+            10% { transform: rotate(-15deg); }
+            20% { transform: rotate(15deg); }
+            30% { transform: rotate(-10deg); }
+            40% { transform: rotate(10deg); }
+            50% { transform: rotate(-5deg); }
+            60% { transform: rotate(5deg); }
+            70% { transform: rotate(-2deg); }
+            80% { transform: rotate(2deg); }
+            90% { transform: rotate(-1deg); }
+        }
+        
+        .bell svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+        }
+        
+        .ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .ripple.active {
+            animation: ripple-out 2s ease-out;
+        }
+        
+        @keyframes ripple-out {
+            0% {
+                width: 200px;
+                height: 200px;
+                opacity: 0.5;
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+                opacity: 0;
+            }
+        }
+        
+        .timer-display {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .timer-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .timer-btn:hover,
+        .timer-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .instruction {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .quote {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Bell</h1>
+        <p class="subtitle">A timer for meditation</p>
+        
+        <div class="bell-container">
+            <div class="ripple" id="ripple"></div>
+            <div class="bell" id="bell" onclick="ringBell()">
+                <svg viewBox="0 0 100 100">
+                    <!-- Bell body -->
+                    <path d="M50 15 C30 15 20 35 20 55 L20 70 L80 70 L80 55 C80 35 70 15 50 15 Z" />
+                    <!-- Bell opening -->
+                    <ellipse cx="50" cy="70" rx="30" ry="8" />
+                    <!-- Clapper -->
+                    <circle cx="50" cy="78" r="6" />
+                    <!-- Sound lines (hidden by default) -->
+                    <path class="sound-lines" d="M15 45 Q5 50 15 55" opacity="0" />
+                    <path class="sound-lines" d="M85 45 Q95 50 85 55" opacity="0" />
+                </svg>
+            </div>
+        </div>
+        
+        <div class="timer-display" id="timer">05:00</div>
+        
+        <div class="timer-controls">
+            <button class="timer-btn" onclick="setTimer(1)">1 min</button>
+            <button class="timer-btn active" onclick="setTimer(5)">5 min</button>
+            <button class="timer-btn" onclick="setTimer(10)">10 min</button>
+            <button class="timer-btn" onclick="setTimer(20)">20 min</button>
+        </div>
+        
+        <button class="timer-btn" onclick="startTimer()" style="padding: 1rem 3rem; font-size: 1.1rem; border-color: var(--accent); color: var(--accent);">
+            Begin
+        </button>
+        
+        <p class="instruction">
+            Click the bell to hear it now.<br>
+            Set a duration, then begin.<br>
+            When the time is complete, the bell will sound again.
+        </p>
+        
+        <p class="quote">
+            "The bell is a reminder that time is passing.<br>
+            Also that time is complete."
+        </p>
+        
+        <a href="index.html" class="back-link">← Return to the Garden</a>
+    </div>
+    
+    <script>
+        let audioContext = null;
+        let timerDuration = 5; // minutes
+        let timerInterval = null;
+        let endTime = null;
+        
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        function playBellSound() {
+            initAudio();
+            
+            const now = audioContext.currentTime;
+            
+            // Create oscillator for bell tone
+            const osc = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            osc.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Bell-like frequency (fundamental + harmonics)
+            osc.frequency.setValueAtTime(528, now); // C5 - "miracle" tone
+            
+            // Envelope for bell sound
+            gainNode.gain.setValueAtTime(0, now);
+            gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, now + 3);
+            
+            osc.start(now);
+            osc.stop(now + 3);
+            
+            // Add harmonics
+            const harmonic2 = audioContext.createOscillator();
+            const gain2 = audioContext.createGain();
+            harmonic2.connect(gain2);
+            gain2.connect(audioContext.destination);
+            harmonic2.frequency.setValueAtTime(1056, now); // Octave
+            gain2.gain.setValueAtTime(0, now);
+            gain2.gain.linearRampToValueAtTime(0.15, now + 0.01);
+            gain2.gain.exponentialRampToValueAtTime(0.001, now + 2.5);
+            harmonic2.start(now);
+            harmonic2.stop(now + 2.5);
+        }
+        
+        function ringBell() {
+            const bell = document.getElementById('bell');
+            const ripple = document.getElementById('ripple');
+            
+            bell.classList.add('ringing');
+            ripple.classList.add('active');
+            
+            playBellSound();
+            
+            setTimeout(() => {
+                bell.classList.remove('ringing');
+                ripple.classList.remove('active');
+            }, 2000);
+        }
+        
+        function setTimer(minutes) {
+            timerDuration = minutes;
+            updateDisplay();
+            
+            // Update active button
+            document.querySelectorAll('.timer-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(minutes)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        function updateDisplay() {
+            const mins = String(timerDuration).padStart(2, '0');
+            document.getElementById('timer').textContent = `${mins}:00`;
+        }
+        
+        function startTimer() {
+            initAudio();
+            
+            const endTimestamp = Date.now() + (timerDuration * 60 * 1000);
+            
+            // Ring to start
+            ringBell();
+            
+            // Update button
+            const btn = event.target;
+            btn.textContent = 'Meditating...';
+            btn.disabled = true;
+            
+            // Countdown
+            timerInterval = setInterval(() => {
+                const remaining = endTimestamp - Date.now();
+                
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer').textContent = '00:00';
+                    ringBell();
+                    btn.textContent = 'Begin';
+                    btn.disabled = false;
+                } else {
+                    const mins = Math.floor(remaining / 60000);
+                    const secs = Math.floor((remaining % 60000) / 1000);
+                    document.getElementById('timer').textContent = 
+                        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+        
+        // Allow any click to init audio context
+        document.addEventListener('click', initAudio, { once: true });
+    </script>
+</body>
+</html>

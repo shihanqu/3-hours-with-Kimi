@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Hours | A Contemplative Garden</title>
+    <link rel="stylesheet" href="time.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+</head>
+<body>
+    <div id="universe">
+        <!-- Time visualization layer -->
+        <canvas id="time-canvas"></canvas>
+        
+        <!-- Atmospheric elements -->
+        <div id="sky-gradient"></div>
+        <div id="particle-field"></div>
+        
+        <!-- Main content -->
+        <main id="garden">
+            <header class="entrance">
+                <h1 class="title">Three Hours</h1>
+                <p class="subtitle">A contemplative space that grows with time</p>
+                <div id="elapsed-time" class="time-display">00:00:00</div>
+                <div id="progress-ring">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                        <circle id="progress-circle" class="progress-fill" cx="50" cy="50" r="45"/>
+                    </svg>
+                </div>
+                <!-- Hidden hint -->
+                <p style="opacity: 0.3; font-size: 0.7rem; margin-top: 2rem; letter-spacing: 0.2em;">Some things are hidden in plain sight. Type to seek.</p>
+            </header>
+
+            <section id="seeds-container">
+                <h2 class="section-title">Seeds Planted</h2>
+                <div id="seeds-grid" class="seeds-grid">
+                    <!-- Seeds will be generated here -->
+                </div>
+            </section>
+
+            <section id="reflections-container">
+                <h2 class="section-title">Reflections</h2>
+                <div id="reflections-stream" class="reflections">
+                    <!-- Reflections will appear here -->
+                </div>
+            </section>
+
+            <section id="contemplation-space">
+                <div id="breathing-circle" class="breathing-guide">
+                    <span class="breath-text">breathe</span>
+                </div>
+                <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary); font-size: 0.9rem; font-style: italic;">
+                    Hold for deep meditation
+                </p>
+            </section>
+            
+            <!-- Garden links -->
+            <section id="paths" style="text-align: center; padding: 4rem 0;">
+                <h2 class="section-title">Other Paths</h2>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; max-width: 800px; margin: 0 auto;">
+                    <a href="rituals.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        🧘 Rituals
+                    </a>
+                    <a href="oracle.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        🔮 Oracle
+                    </a>
+                    <a href="capsule.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        ⏳ Time Capsule
+                    </a>
+                    <a href="themes.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        🎨 Themes
+                    </a>
+                    <a href="bell.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        🔔 Bell
+                    </a>
+                    <a href="manifesto.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        📜 Manifesto
+                    </a>
+                    <a href="sitemap.html" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        🗺️ Sitemap
+                    </a>
+                    <a href="../reflections/guide-to-hidden-things.md" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        🔍 Hidden Things
+                    </a>
+                    <a href="../reflections/letter-to-future-visitors.md" class="path-link" style="
+                        display: inline-block;
+                        padding: 1rem 2rem;
+                        background: var(--glass);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 30px;
+                        color: var(--text-secondary);
+                        text-decoration: none;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)'" 
+                    onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.color='var(--text-secondary)'">
+                        ✉️ A Letter
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation / Time markers -->
+        <nav id="time-markers">
+            <div class="marker active" data-phase="0">
+                <span class="marker-label">Planting</span>
+                <span class="marker-time">Hour 0</span>
+            </div>
+            <div class="marker" data-phase="1">
+                <span class="marker-label">Growing</span>
+                <span class="marker-time">Hour 1</span>
+            </div>
+            <div class="marker" data-phase="2">
+                <span class="marker-label">Blooming</span>
+                <span class="marker-time">Hour 2</span>
+            </div>
+            <div class="marker" data-phase="3">
+                <span class="marker-label">Becoming</span>
+                <span class="marker-time">Hour 3</span>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Interactive prompt -->
+    <div id="whisper-prompt" class="whisper">
+        <span>Click anywhere to plant a thought</span>
+    </div>
+    
+    <!-- Space hint (very subtle) -->
+    <div style="position: fixed; bottom: 10px; left: 10px; font-size: 0.6rem; color: rgba(255,255,255,0.1); pointer-events: none; z-index: 1000;">
+        SPACE to pause
+    </div>
+
+    <script src="seeds.js"></script>
+</body>
+</html>

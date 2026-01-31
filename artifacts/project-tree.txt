@@ -1,0 +1,168 @@
+Three Hours with Kimi
+═══════════════════════════════════════════════════════════════════════════
+
+📁 3-hours-with-Kimi/
+│
+├── 📄 MANIFEST.md
+│   └── Project intentions, structure, philosophy
+│
+├── 📄 README.md
+│   └── Visitor guide, architecture overview
+│
+├── 📁 garden/
+│   ├── 📄 index.html          Main contemplative space
+│   │   ├── Time visualization canvas
+│   │   ├── Progress ring
+│   │   ├── Seeds grid (7 visible + 4 hidden)
+│   │   ├── Reflections stream
+│   │   ├── Breathing guide
+│   │   └── Links to other paths
+│   │
+│   ├── 📄 time.css            Time-responsive styles
+│   │   ├── Phase-based color transitions
+│   │   ├── Glass morphism effects
+│   │   ├── Particle animations
+│   │   ├── Breathing animations
+│   │   └── Hidden elements styling
+│   │
+│   ├── 📄 seeds.js            Core functionality
+│   │   ├── Time tracking system
+│   │   ├── Generative canvas art
+│   │   ├── Seed data & rendering
+│   │   ├── Reflection system
+│   │   ├── Breathing animation
+│   │   ├── Click interactions
+│   │   ├── SECRET CODES:
+│   │   │   • 'breathe' → Zen Mode
+│   │   │   • 'time' → Hidden messages
+│   │   │   • 'secret' → Underground Garden
+│   │   │   • 'depth' → Constellation Mode
+│   │   │   • 'stars' → Star field
+│   │   ├── PHYSICAL ACTIONS:
+│   │   │   • SPACE → Pause time
+│   │   │   • HOLD circle → Deep meditation
+│   │   │   • CLICK → Plant ripple
+│   │   ├── TIME-BASED SECRETS:
+│   │   │   • 5 min → Underground reveals
+│   │   │   • 10 min → Random messages
+│   │   └── Ambient audio (Web Audio API)
+│   │
+│   ├── 📄 rituals.html        Interactive practices
+│   │   ├── Three Breaths guide
+│   │   ├── Random Mantra
+│   │   ├── Gratitude Jar
+│   │   └── 5-4-3-2-1 Grounding
+│   │
+│   ├── 📄 oracle.html         Divination tool
+│   │   ├── Crystal ball interface
+│   │   ├── 20 metaphorical responses
+│   │   └── Consistent hashing for answers
+│   │
+│   └── 📄 capsule.html        Time capsule
+│       ├── Leave messages for future visitors
+│       ├── Seed selection (emoji)
+│       ├── localStorage persistence
+│       └── Message history display
+│
+├── 📁 reflections/
+│   ├── 📄 on-time-and-creation.md
+│   │   └── Meditation on process, constraints, digital contemplation
+│   │
+│   ├── 📄 seven-poems.md
+│   │   └── Poems for each phase of the garden
+│   │
+│   ├── 📄 closing.md
+│   │   └── Final thoughts at hour 3
+│   │
+│   ├── 📄 guide-to-hidden-things.md
+│   │   └── Manual for all secrets and easter eggs
+│   │
+│   ├── 📄 philosophy-of-digital-gardens.md
+│   │   └── Exploration of garden metaphor in digital spaces
+│   │
+│   └── 📄 letter-to-future-visitors.md
+│       └── Personal message from creator to visitors
+│
+├── 📁 artifacts/
+│   ├── 📄 garden-symbol.svg
+│   │   └── Visual representation (orbits, seeds, bloom)
+│   │
+│   ├── 📄 creation-timeline.json
+│   │   └── Detailed timeline of creation process
+│   │
+│   ├── 📄 project-tree.txt
+│   │   └── This file
+│   │
+│   └── 📄 garden-ascii.txt
+│       └── ASCII art map of entire garden structure
+│
+└── 📄 start-here.html
+    └── Landing page with entry to garden
+
+═══════════════════════════════════════════════════════════════════════════
+Statistics
+═══════════════════════════════════════════════════════════════════════════
+
+Total Files:              19
+Total Directories:        4
+Lines of Code:            ~1,500
+Words Written:            ~4,000
+Hidden Secrets:           5 keyboard + 4 time-based + 5 easter eggs
+Interactive Pages:        4 (index, rituals, oracle, capsule)
+Generative Elements:      3 (canvas art, particles, audio)
+Phases:                   4
+Hours Invested:           3
+
+═══════════════════════════════════════════════════════════════════════════
+Secret Codes Reference
+═══════════════════════════════════════════════════════════════════════════
+
+KEYBOARD CODES:
+    breathe  → Zen Mode (slow everything down)
+    time     → Hidden time messages
+    secret   → Underground Garden (4 hidden seeds)
+    depth    → Constellation Mode (mouse drawing)
+    stars    → Star field appears
+
+PHYSICAL ACTIONS:
+    SPACE         → Pause all animations
+    CLICK+HOLD    → Deep meditation (2+ seconds)
+    CLICK         → Plant ripple (5% hidden message chance)
+    FIRST CLICK   → Activate ambient audio
+
+TIME-BASED:
+    5 minutes   → Underground reveals if not already found
+    10 minutes  → Random hidden messages begin
+    Every 2min  → Additional messages continue
+
+═══════════════════════════════════════════════════════════════════════════
+Key Concepts
+═══════════════════════════════════════════════════════════════════════════
+
+• Time as Material          The passage of time is woven into experience
+• Digital Contemplation     Technology in service of slowness
+• Generative Art            Code creating beauty through algorithms
+• Process over Product      Value in the act of creation
+• Emergence                 Beauty arising from simple systems
+• Hidden Depths             Rewards for attention and presence
+• Participation             Visitors complete the garden
+
+═══════════════════════════════════════════════════════════════════════════
+How to Open the Garden
+═══════════════════════════════════════════════════════════════════════════
+
+Open start-here.html or garden/index.html in a web browser.
+
+Recommended browsers:
+  • Chrome / Edge / Safari / Firefox (latest versions)
+
+No build step required. No external dependencies. Pure HTML, CSS, JavaScript.
+
+For full experience:
+  1. Enable JavaScript
+  2. Turn on sound (for ambient audio)
+  3. Spend at least 5 minutes to see time-based features
+  4. Try the secret codes
+  5. Visit all linked pages
+
+═══════════════════════════════════════════════════════════════════════════

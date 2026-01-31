@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rituals | Three Hours</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sky-top: #0f172a;
+            --sky-bottom: #1e293b;
+            --accent: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        
+        .ritual {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            transition: all 0.4s ease;
+        }
+        
+        .ritual:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ritual h2 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .ritual .duration {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ritual p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .ritual-steps {
+            list-style: none;
+            counter-reset: step;
+        }
+        
+        .ritual-steps li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            min-height: 2rem;
+        }
+        
+        .ritual-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            background: var(--glass);
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+        
+        .interactive-area {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        #mantra-display {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--accent);
+            min-height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #gratitude-jar {
+            width: 100%;
+            min-height: 150px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            resize: vertical;
+            margin-bottom: 1rem;
+        }
+        
+        #gratitude-jar::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        #gratitude-jar:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            background: var(--glass);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: var(--sky-top);
+        }
+        
+        .breathing-widget {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: breathe 8s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+        
+        .breathing-widget span {
+            font-family: var(--font-serif);
+            font-style: italic;
+        }
+        
+        #stored-gratitudes {
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .gratitude-item {
+            background: var(--glass);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            border-left: 2px solid var(--accent);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rituals</h1>
+            <p class="subtitle">Practices for the contemplative visitor</p>
+        </header>
+        
+        <!-- Ritual 1: Three Breaths -->
+        <div class="ritual">
+            <h2>The Three Breaths</h2>
+            <div class="duration">Duration: 1 minute</div>
+            <p>A simple practice to center yourself before exploring further.</p>
+            <ol class="ritual-steps">
+                <li>Settle into stillness. Feel your body against the surface beneath you.</li>
+                <li>Follow the circle below. Inhale as it expands. Exhale as it contracts.</li>
+                <li>Complete three full breaths at your own pace.</li>
+                <li>Notice: Has anything shifted?</li>
+            </ol>
+            <div class="interactive-area">
+                <div class="breathing-widget">
+                    <span>breathe</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ritual 2: Random Mantra -->
+        <div class="ritual">
+            <h2>The Random Mantra</h2>
+            <div class="duration">Duration: Momentary</div>
+            <p>Sometimes we need a phrase to hold onto. Click the button to receive one.</p>
+            <div class="interactive-area">
+                <div id="mantra-display">Click for a mantra</div>
+                <button class="btn" onclick="generateMantra()" style="margin-top: 1rem;">Receive</button>
+            </div>
+        </div>
+        
+        <!-- Ritual 3: Gratitude Jar -->
+        <div class="ritual">
+            <h2>The Gratitude Jar</h2>
+            <div class="duration">Duration: 2 minutes</div>
+            <p>What are you grateful for in this moment? Write it here. It will be stored only for this session, then released.</p>
+            <div class="interactive-area">
+                <textarea id="gratitude-jar" placeholder="I am grateful for..."></textarea>
+                <button class="btn" onclick="addGratitude()">Place in Jar</button>
+                <div id="stored-gratitudes"></div>
+            </div>
+        </div>
+        
+        <!-- Ritual 4: 5-4-3-2-1 -->
+        <div class="ritual">
+            <h2>The 5-4-3-2-1 Grounding</h2>
+            <div class="duration">Duration: 3 minutes</div>
+            <p>A practice to bring you fully into the present moment.</p>
+            <ol class="ritual-steps">
+                <li><strong>5</strong> things you can see. Look slowly. Name them.</li>
+                <li><strong>4</strong> things you can touch. Feel their texture, temperature, weight.</li>
+                <li><strong>3</strong> things you can hear. Listen beneath the obvious sounds.</li>
+                <li><strong>2</strong> things you can smell. Breathe deeply.</li>
+                <li><strong>1</strong> thing you can taste. The residue of your last meal, or simply the taste of air.</li>
+            </ol>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">← Return to the Garden</a>
+        </div>
+    </div>
+    
+    <script>
+        const mantras = [
+            "This too shall pass.",
+            "You are exactly where you need to be.",
+            "Breathe in peace. Breathe out tension.",
+            "The present moment is all there is.",
+            "You have survived 100% of your bad days.",
+            "Progress, not perfection.",
+            "Let go or be dragged.",
+            "Be here now.",
+            "This moment is a fresh start.",
+            "You are enough.",
+            "Stillness is not empty.",
+            "The garden grows in its own time.",
+            "What you seek is also seeking you.",
+            "In silence, truth emerges.",
+            "Every exit is an entrance somewhere else."
+        ];
+        
+        function generateMantra() {
+            const display = document.getElementById('mantra-display');
+            const mantra = mantras[Math.floor(Math.random() * mantras.length)];
+            display.style.opacity = '0';
+            setTimeout(() => {
+                display.textContent = mantra;
+                display.style.opacity = '1';
+            }, 300);
+        }
+        
+        function addGratitude() {
+            const jar = document.getElementById('gratitude-jar');
+            const container = document.getElementById('stored-gratitudes');
+            const text = jar.value.trim();
+            
+            if (text) {
+                const item = document.createElement('div');
+                item.className = 'gratitude-item';
+                item.textContent = text;
+                container.appendChild(item);
+                jar.value = '';
+            }
+        }
+        
+        // Allow enter key to submit gratitude
+        document.getElementById('gratitude-jar').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                addGratitude();
+            }
+        });
+    </script>
+</body>
+</html>

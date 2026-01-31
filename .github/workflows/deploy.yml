@@ -1,0 +1,20 @@
+# Simple GitHub Pages deployment workflow
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Verify structure
+      run: |
+        echo "Verifying garden structure..."
+        test -f index.html && echo "✓ Root index.html exists"
+        test -d garden && echo "✓ Garden directory exists"
+        test -f garden/index.html && echo "✓ Garden index.html exists"
+        echo "Garden is ready for deployment!"

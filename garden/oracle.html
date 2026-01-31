@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oracle | Three Hours</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23f59e0b'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sky-top: #0f172a;
+            --sky-bottom: #1e293b;
+            --accent: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 3rem;
+        }
+        
+        .oracle-interface {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .crystal-ball {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(245, 158, 11, 0.4), rgba(245, 158, 11, 0.1) 50%, transparent 70%);
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        
+        .crystal-ball:hover {
+            box-shadow: 0 0 80px rgba(245, 158, 11, 0.4);
+            transform: scale(1.02);
+        }
+        
+        .crystal-ball.listening {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 60px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 100px rgba(245, 158, 11, 0.5); }
+        }
+        
+        .crystal-ball svg {
+            width: 80px;
+            height: 80px;
+            opacity: 0.8;
+        }
+        
+        .question-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        
+        .question-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .question-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .btn {
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            color: var(--sky-top);
+        }
+        
+        .response {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+        
+        .response.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .response-text {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .response-meaning {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .instruction {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Oracle</h1>
+        <p class="subtitle">Ask the garden a question</p>
+        
+        <div class="oracle-interface">
+            <div class="crystal-ball" id="crystal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2"/>
+                    <path d="M12 8v8M8 12h8"/>
+                </svg>
+            </div>
+            
+            <input 
+                type="text" 
+                class="question-input" 
+                id="question" 
+                placeholder="What do you seek to understand?"
+                maxlength="100"
+            >
+            
+            <button class="btn" onclick="consultOracle()">Seek</button>
+            
+            <div class="response" id="response">
+                <div class="response-text" id="responseText"></div>
+                <div class="response-meaning" id="responseMeaning"></div>
+            </div>
+        </div>
+        
+        <p class="instruction">
+            The oracle speaks in metaphors. Listen not for answers,<br>
+            but for the questions it raises in your mind.
+        </p>
+        
+        <a href="index.html" class="back-link">← Return to the Garden</a>
+    </div>
+    
+    <script>
+        const responses = [
+            {
+                text: "The seed knows nothing of the flower, yet trusts the becoming.",
+                meaning: "Trust the process, even when the outcome is invisible."
+            },
+            {
+                text: "Water what you want to grow, not what you wish would die.",
+                meaning: "Attention is nourishment. Direct it consciously."
+            },
+            {
+                text: "The garden does not check its watch. It follows the sun.",
+                meaning: "Your timing is your own. Do not rush what needs to ripen."
+            },
+            {
+                text: "Roots grow in darkness before shoots see light.",
+                meaning: "Invisible work is still work. Foundation comes before form."
+            },
+            {
+                text: "A single flower does not compete with the field.",
+                meaning: "Your path is not a race. Bloom in your own season."
+            },
+            {
+                text: "The compost of yesterday feeds tomorrow's bloom.",
+                meaning: "What falls away becomes resource. Nothing is truly lost."
+            },
+            {
+                text: "Pruning is not loss. It is redirecting life.",
+                meaning: "Letting go creates space for what matters."
+            },
+            {
+                text: "The gardener's shadow also falls on the soil.",
+                meaning: "You are part of what you create. You cannot stand apart."
+            },
+            {
+                text: "Wind carries seeds to places the gardener never imagined.",
+                meaning: "Outcomes exceed intention. Release control of destination."
+            },
+            {
+                text: "Even the smallest seed contains the whole pattern.",
+                meaning: "You need not be large to be complete."
+            },
+            {
+                text: "The garden sleeps, but it does not die.",
+                meaning: "Rest is not failure. Dormancy preserves life."
+            },
+            {
+                text: "Weeds are only plants growing where they are not wanted.",
+                meaning: "Categories depend on perspective. Question your judgments."
+            },
+            {
+                text: "The soil remembers every hand that touched it.",
+                meaning: "Your presence leaves traces, seen and unseen."
+            },
+            {
+                text: "A garden is not built. It is tended, day by day.",
+                meaning: "Process over product. Care over completion."
+            },
+            {
+                text: "The flower does not ask for permission to bloom.",
+                meaning: "Your becoming needs no external validation."
+            },
+            {
+                text: "Cross-pollination creates what neither parent could alone.",
+                meaning: "Connection generates novelty. Seek the unfamiliar."
+            },
+            {
+                text: "Some seeds wait years for the right conditions.",
+                meaning: "Patience is not passivity. It is readiness."
+            },
+            {
+                text: "The beauty of the garden is in its imperfection.",
+                meaning: "Flaw creates character. Perfection is sterile."
+            },
+            {
+                text: "Morning dew does not choose which leaf to grace.",
+                meaning: "Blessings fall on all alike. Notice yours."
+            },
+            {
+                text: "What you plant today, another will harvest tomorrow.",
+                meaning: "Your work extends beyond your sight. Trust in legacy."
+            }
+        ];
+        
+        function consultOracle() {
+            const question = document.getElementById('question').value.trim();
+            const crystal = document.getElementById('crystal');
+            const response = document.getElementById('response');
+            const responseText = document.getElementById('responseText');
+            const responseMeaning = document.getElementById('responseMeaning');
+            
+            if (!question) {
+                document.getElementById('question').focus();
+                return;
+            }
+            
+            // Animation
+            crystal.classList.add('listening');
+            response.classList.remove('visible');
+            
+            setTimeout(() => {
+                crystal.classList.remove('listening');
+                
+                // Select response based on question hash for consistency
+                const hash = question.split('').reduce((a, b) => {
+                    a = ((a << 5) - a) + b.charCodeAt(0);
+                    return a & a;
+                }, 0);
+                const responseIndex = Math.abs(hash) % responses.length;
+                const selected = responses[responseIndex];
+                
+                responseText.textContent = `"${selected.text}"`;
+                responseMeaning.textContent = selected.meaning;
+                response.classList.add('visible');
+            }, 2000);
+        }
+        
+        // Allow enter key
+        document.getElementById('question').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                consultOracle();
+            }
+        });
+        
+        // Click crystal to activate
+        document.getElementById('crystal').addEventListener('click', function() {
+            document.getElementById('question').focus();
+        });
+    </script>
+</body>
+</html>

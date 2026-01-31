@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e3a5f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4c1d95;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0" />
+    </radialGradient>
+    
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle representing the garden space -->
+  <circle cx="200" cy="200" r="180" fill="url(#skyGradient)" opacity="0.3"/>
+  
+  <!-- Orbital rings representing the passage of time -->
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#f59e0b" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="200" cy="200" r="100" fill="none" stroke="#f59e0b" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="200" cy="200" r="60" fill="none" stroke="#f59e0b" stroke-width="0.5" opacity="0.4"/>
+  
+  <!-- Central seed/bloom -->
+  <circle cx="200" cy="200" r="25" fill="#f59e0b" filter="url(#softGlow)" opacity="0.8"/>
+  <circle cx="200" cy="200" r="35" fill="url(#glow)"/>
+  
+  <!-- Seven seeds/orbs on the outer ring representing the seven seeds -->
+  <g opacity="0.7">
+    <circle cx="200" cy="60" r="6" fill="#f97316"/>
+    <circle cx="295" cy="105" r="6" fill="#fb923c"/>
+    <circle cx="340" cy="200" r="6" fill="#fbbf24"/>
+    <circle cx="295" cy="295" r="6" fill="#a855f7"/>
+    <circle cx="200" cy="340" r="6" fill="#8b5cf6"/>
+    <circle cx="105" cy="295" r="6" fill="#6366f1"/>
+    <circle cx="60" cy="200" r="6" fill="#818cf8"/>
+  </g>
+  
+  <!-- Connecting lines representing growth paths -->
+  <g stroke="#f59e0b" stroke-width="0.5" opacity="0.15">
+    <line x1="200" y1="200" x2="200" y2="60"/>
+    <line x1="200" y1="200" x2="295" y2="105"/>
+    <line x1="200" y1="200" x2="340" y2="200"/>
+    <line x1="200" y1="200" x2="295" y2="295"/>
+    <line x1="200" y1="200" x2="200" y2="340"/>
+    <line x1="200" y1="200" x2="105" y2="295"/>
+    <line x1="200" y1="200" x2="60" y2="200"/>
+  </g>
+  
+  <!-- Floating particles -->
+  <g fill="#f59e0b" opacity="0.4">
+    <circle cx="150" cy="120" r="2"/>
+    <circle cx="280" cy="160" r="1.5"/>
+    <circle cx="320" cy="250" r="2"/>
+    <circle cx="120" cy="280" r="1.5"/>
+    <circle cx="250" cy="320" r="2"/>
+    <circle cx="80" cy="150" r="1.5"/>
+  </g>
+  
+  <!-- Breathing rings -->
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#f59e0b" stroke-width="0.3" opacity="0.1"/>
+  <circle cx="200" cy="200" r="190" fill="none" stroke="#f59e0b" stroke-width="0.2" opacity="0.08"/>
+  
+  <!-- Title text -->
+  <text x="200" y="385" 
+        text-anchor="middle" 
+        font-family="serif" 
+        font-size="14" 
+        fill="#94a3b8" 
+        opacity="0.6" 
+        letter-spacing="3">THREE HOURS</text>
+</svg>
