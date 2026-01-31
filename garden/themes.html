@@ -299,6 +299,12 @@
         
         <button class="apply-btn" onclick="applyTheme()">Apply to Garden</button>
         
+        <button class="apply-btn" onclick="resetTheme()" style="margin-top: 1rem; border-color: var(--text-secondary); color: var(--text-secondary);">Reset to Default</button>
+        
+        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 2rem; font-style: italic;">
+            After applying, return to the <a href="index.html" style="color: var(--accent);">main garden</a> to see your theme in action.
+        </p>
+        
         <a href="index.html" class="back-link">← Return to the Garden</a>
     </div>
     
@@ -390,6 +396,19 @@
                 btn.style.background = '';
                 btn.style.color = '';
                 btn.style.borderColor = '';
+            }, 2000);
+        }
+        
+        function resetTheme() {
+            localStorage.removeItem('garden-theme');
+            selectTheme('dawn');
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Reset ✓';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
             }, 2000);
         }
         
