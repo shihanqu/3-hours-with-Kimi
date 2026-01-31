@@ -890,12 +890,19 @@ function initTheme() {
             root.style.setProperty('--sky-top', theme.colors[0]);
             root.style.setProperty('--sky-bottom', theme.colors[1]);
             root.style.setProperty('--accent', theme.accent);
-            root.style.setProperty('--glow', theme.accent + '4D'); // 30% opacity
+            
+            // Convert hex to rgba for glow (30% opacity)
+            const hex = theme.accent.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            root.style.setProperty('--glow', `rgba(${r}, ${g}, ${b}, 0.3)`);
+            
+            console.log(`🎨 Theme applied: ${theme.name}`);
+            console.log(`   Colors: ${theme.colors[0]}, ${theme.colors[1]}, ${theme.accent}`);
         }
-        
-        console.log(`🎨 Theme applied: ${theme.name}`);
     } catch (e) {
-        console.log('Could not apply saved theme');
+        console.log('Could not apply saved theme:', e);
     }
 }
 
