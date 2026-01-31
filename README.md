@@ -2,6 +2,8 @@
 
 > *A contemplative digital garden created in real-time.*
 
+🌐 **Live Garden:** https://shihanqu.github.io/3-hours-with-Kimi/
+
 ## 🌱 What This Is
 
 This project is an exploration of time, creativity, and presence. Built from an empty directory, it represents a meditation on the creative process itself.
@@ -15,7 +17,9 @@ The garden is a living web experience where:
 ## 🌿 How to Experience It
 
 ### Quick Start
-1. Open `index.html` or `garden/index.html` in your browser
+1. **Visit the live garden:** https://shihanqu.github.io/3-hours-with-Kimi/
+   
+   Or open locally: `index.html` or `garden/index.html`
 2. Allow yourself a few minutes of presence
 3. Notice the particles floating, the colors shifting
 4. Click the breathing circle to sync your breath
